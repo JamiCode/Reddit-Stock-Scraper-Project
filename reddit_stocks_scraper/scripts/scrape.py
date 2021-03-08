@@ -75,29 +75,42 @@ class Reddit:
 			# mostfreq = most_frequent(stcs_valid)
 			return stcs_valid
 		counter = 0
+		intial_scrape_value = None
+		counter_inner = 0
 		while True:
-			# if the time is 3am, start scraping for yesterday		
-			if datetime.utcnow().hour >= 4:
-				print("Beginning to Scrape for the day")
-				start_time = time.perf_counter()
-				print("[INFO] Scraping Data ......")
-				stocks = scrape_stocks()
-				end_time = time.perf_counter() - start_time
-				print(f"[INFO] Done Scraping {thumbsup}| Took {end_time} seconds")
-				print("[INFO] CONFIRMING STOCKS")
-				with open("stocks_mentioned.txt","r") as file:
-					content = file.read()
-					str_stocks = str(stocks)
-					if str_stocks == content:
-						print(f"[INFO] Confirmed Successfully {thumbsup}")
+			# if the time is when is 12pm, start scraping for yesterday		
+			if datetime.utcnow().hour == 0:
+				if intial_scrape_value == None:
+					intial_scrape_value = True
+					print("Beginning to Scrape for the day")
+					start_time = time.perf_counter()
+					print("[INFO] Scraping Data ......")
+					stocks = scrape_stocks()
+					end_time = time.perf_counter() - start_time
+					print(f"[INFO] Done Scraping {thumbsup}| Took {end_time} seconds")
+					print("[INFO] CONFIRMING STOCKS")
+					with open("stocks_mentioned.txt","r") as file:
+						content = file.read()
+						str_stocks = str(stocks)
+						if str_stocks == content:
+							print(f"[INFO] Confirmed Successfully {thumbsup}")
+						else:
+							print(f"[INFO]{cross} Not Confirmed, using Backup")
+					return stocks
+					counter_inner = 0
+				else:
+					if counter_inner == 0:
+						print("Already Done Scraping")
+						counter_inner = 1
 					else:
-						print(f"[INFO]{cross} Not Confirmed, using Backup")
-				return stocks
-				break
+						continue
 			else:
+				intial_scrape_value = None
 				if counter == 0:
-					print("Time is not yet")
+					print("Not yet time to scrape")
 					counter += 1
+				elif datetime.utcnow().hour == 1:
+					counter = 0 
 				else:
 					continue
 	
@@ -109,7 +122,6 @@ class Reddit:
 			submissions = list(api.search_submissions(after=start_time,
 		                            subreddit= self.subreddit,
 		                            filter=['url','author', 'title', 'subreddit'],
-		                            stop_condition=lambda x : isinstance(end_time, datetime)
 		                            ))
 			#memory management
 			cashtags_list_data = list()
@@ -159,7 +171,7 @@ class Reddit:
 
 def run():
 	wall_street_bets = Reddit("wallstreetbets")
-	wall_street_bets.begin_scrape_from_default()
+	wall_street_bets.begin_scrape_for_yesterday()
 	satistics = wall_street_bets.statistic_count
 	unserialized_dict = unserialize_dict(satistics)
 	update_create_db(unserialized_dict)

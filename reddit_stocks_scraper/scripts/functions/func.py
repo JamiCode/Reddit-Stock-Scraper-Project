@@ -5,7 +5,7 @@ import threading
 import finnhub
 from collections import Counter
 from emoji import emojize
-from datetime import datetime, time, date 
+from datetime import datetime, date 
 from reddit.models import RedditStocksDB
 #setup zone
 # api for stock checking
@@ -203,7 +203,7 @@ def unserialize_dict(dateset:dict):
 	unserialized_dict = list(dateset.items())
 	return unserialized_dict
 
-def update_create_db(dataset:list) - > None:
+def update_create_db(dataset:list) -> None:
 	def get_current_symbol_state(ticker):
 		symbol = RedditStocksDB.objects.filter(stock_ticker=ticker)
 		if symbol.exists():

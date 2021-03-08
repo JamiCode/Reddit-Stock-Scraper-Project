@@ -6,7 +6,7 @@ from psaw import PushshiftAPI
 from reddit.models import RedditStocksDB
 from collections import Counter
 from datetime import datetime, date
-from .functions import *
+from .functions.func  import *
 
 
 class Reddit:
@@ -79,10 +79,10 @@ class Reddit:
 			# if the time is 3am, start scraping for yesterday		
 			if datetime.utcnow().hour >= 4:
 				print("Beginning to Scrape for the day")
-				start_time = time.time()
+				start_time = time.perf_counter()
 				print("[INFO] Scraping Data ......")
 				stocks = scrape_stocks()
-				end_time = time.time() - start_time
+				end_time = time.perf_counter() - start_time
 				print(f"[INFO] Done Scraping {thumbsup}| Took {end_time} seconds")
 				print("[INFO] CONFIRMING STOCKS")
 				with open("stocks_mentioned.txt","r") as file:
@@ -106,11 +106,10 @@ class Reddit:
 		def scrape_stocks():
 			start_time = datetime(2021, 2, 15)
 			end_time = datetime(2021, 6, 2)
-			boolean = isinstance(end_time, datetime)
 			submissions = list(api.search_submissions(after=start_time,
 		                            subreddit= self.subreddit,
 		                            filter=['url','author', 'title', 'subreddit'],
-		                            stop_condition=boolean
+		                            stop_condition=lambda x : isinstance(end_time, datetime)
 		                            ))
 			#memory management
 			cashtags_list_data = list()
@@ -160,15 +159,8 @@ class Reddit:
 
 def run():
 	wall_street_bets = Reddit("wallstreetbets")
-	wall_street_bets.begin_scrape_for_yesterday()
+	wall_street_bets.begin_scrape_from_default()
 	satistics = wall_street_bets.statistic_count
 	unserialized_dict = unserialize_dict(satistics)
-
-	print("These are the stocks mentions")
-	print(wall_street_bets.stock_mentioned_yesterday)
-	print("Statistic Count")
-	print(wall_street_bets.statistic_count)
-	print("unserialize dict")
-	print(unserialize_dict(dateset))
 	update_create_db(unserialized_dict)
 	print("Done Updating/Creating Database")

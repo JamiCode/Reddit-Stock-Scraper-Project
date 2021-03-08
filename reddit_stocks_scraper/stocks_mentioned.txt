@@ -1,1 +1,1 @@
-['ADT', 'ADT', 'FSR', 'FSR', 'SMLP', 'SMLP', 'AMC', 'AMC', 'GME', 'GME', 'TSLA', 'TSLA', 'SAVA', 'SAVA', 'AMC', 'AMC', 'GME', 'GME', 'PLCE', 'PLCE', 'GME', 'GME', 'GME', 'GME', 'AZN', 'AZN', 'GME']
+['TRCH', 'TRCH', 'EYES', 'EYES', 'ZOM', 'ZOM', 'ADT', 'ADT', 'FSR', 'FSR', 'SMLP', 'SMLP', 'AMC', 'AMC', 'GME', 'GME', 'TSLA', 'TSLA', 'SAVA', 'SAVA', 'BFCH', 'BFCH', 'GME', 'GME', 'GNUS', 'GNUS', 'UWMC', 'UWMC']

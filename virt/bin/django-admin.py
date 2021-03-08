@@ -1,4 +1,4 @@
-#!/home/samuel/dev/tools/stocks-scraping/virt/bin/python3.9
+#!/home/samuel/dev/tools/Reddit-Stock-Scraper-Project/virt/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

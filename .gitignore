@@ -1,4 +1,8 @@
-.swp
-stocks_mentioned.txt #ignores stocks_mentioned text file for git tracking
-node_modules/ # ignores the node_modules
-db.sqlite3 #ignores database
+*.swp
+*.txt.sqp
+*.stocks_mentioned.txt
+node_modules/
+db.sqlite3
+virt/ # ignores virtual enviroment
+
+ 

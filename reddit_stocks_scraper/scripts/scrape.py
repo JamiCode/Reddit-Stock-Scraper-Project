@@ -1,11 +1,10 @@
 import time
 import datetime
 import emojis
-import time
 from psaw import PushshiftAPI
 from reddit.models import RedditStocksDB
 from collections import Counter
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 from .functions.func  import *
 
 
@@ -14,7 +13,7 @@ class Reddit:
 	global api
 	global thumbsup
 	global cross
-	api = PushshiftAPI() 
+	api = PushshiftAPI()
 	thumbsup = emojis.encode(":thumbsup:")
 	cross = emojis.encode(":x:")
 
@@ -24,7 +23,7 @@ class Reddit:
 		self.stock_mentioned_yesterday = "Scraping did not start yet"
 		self.stock_mentioned_default = "Scraping did not start yet"
 		self.statistic_count = "Scraping did not start yet"
-	
+
 	def begin_scrape_for_yesterday(self):
 		""" This method would scrape reddit stocks from wallstreetbets for the previous day once it hits 3am UTC"""
 		def get_scrape_time():
@@ -33,7 +32,7 @@ class Reddit:
 			month = datetime.utcnow().month
 			day = datetime.utcnow().day
 			search_day = day - 1
-			start_date_scrape = datetime(year, month, day)
+			start_date_scrape = datetime(year, month, search_day)
 			start_time = int(start_date_scrape.timestamp())
 			return start_time
 		def scrape_stocks():
@@ -57,7 +56,7 @@ class Reddit:
 						cashtags_list_data_with_date.append((i,get_date(submission)))
 					for n in mini_cashtags_data:
 						cashtags_list_data.append(n)
-            #--------------------------------------			
+            #--------------------------------------
 			emojis_extracted = extracted_emojis(characters_remover(cash_tag_remover(cashtags_list_data)))
 			stc_withem = cash_tag_remover(cashtags_list_data)
 			tickers_em = characters_remover(stc_withem)
@@ -98,6 +97,7 @@ class Reddit:
 							print(f"[INFO]{cross} Not Confirmed, using Backup")
 					return stocks
 					counter_inner = 0
+					break
 				else:
 					if counter_inner == 0:
 						print("Already Done Scraping")
@@ -105,15 +105,20 @@ class Reddit:
 					else:
 						continue
 			else:
-				intial_scrape_value = None
-				if counter == 0:
-					print("Not yet time to scrape")
-					counter += 1
-				elif datetime.utcnow().hour == 1:
-					counter = 0 
-				else:
-					continue
-	
+				current_date = datetime.utcnow()
+				scrape_time = datetime(
+					current_date.year, 
+					current_date.month, 
+					current_date.day, 
+					4
+					)
+				difference = scrape_time - datetime.utcnow()
+				wait = difference.total_seconds()
+				print("[INFO] Waiting for time to scrape")
+				time.sleep(wait)
+
+
+
 	def begin_scrape_from_default(self):
 		""" METHOD that begins scrape from the default, Feb 15"""
 		def scrape_stocks():
@@ -129,7 +134,7 @@ class Reddit:
 			for submission in submissions:
 				words = submission.title.split()
 				# filter out words, that is a lower and starts with $
-				cashtags = tuple(set(filter(lambda word: word.lower().startswith("$"), words))) 
+				cashtags = tuple(set(filter(lambda word: word.lower().startswith("$"), words)))
 				# if it has any cashtags
 				if len(cashtags) > 0:
 					mini_cashtags_data = list()
@@ -138,7 +143,7 @@ class Reddit:
 						cashtags_list_data_with_date.append((i,get_date(submission)))
 					for n in mini_cashtags_data:
 						cashtags_list_data.append(n)
-            #--------------------------------------			
+            #-----------------------------------------------------
 			emojis_extracted = extracted_emojis(characters_remover(cash_tag_remover(cashtags_list_data)))
 			stc_withem = cash_tag_remover(cashtags_list_data)
 			tickers_em = characters_remover(stc_withem)
@@ -154,7 +159,7 @@ class Reddit:
 			# max_ = getMaxFromStatisticsCounts(stats)
 			# mostfreq = most_frequent(stcs_valid)
 			return stcs_valid
-		
+
 
 		# starts to	scrape
 		if True:

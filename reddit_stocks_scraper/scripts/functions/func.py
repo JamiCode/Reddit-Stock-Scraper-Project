@@ -5,7 +5,7 @@ import threading
 import finnhub
 from collections import Counter
 from emoji import emojize
-from datetime import datetime, date 
+from datetime import datetime, date
 from reddit.models import RedditStocksDB
 #setup zone
 # api for stock checking
@@ -23,7 +23,7 @@ def get_date(submission):
 	""" GETS datetime obj"""
 	time = submission.created
 	return datetime.fromtimestamp(time)
-	
+
 # removes all $
 def cash_tag_remover(dataset : list):
 	result_list = list()
@@ -60,14 +60,14 @@ def characters_remover(dataset : list):
 		for i in characters:
 			if i in global_x:
 				global_x = global_x.replace(i,"")
-		
+
 		if global_x != str():
 			clean.append((global_x,))
 			return clean[0]
 		else:
 			return x
-		
-	
+
+
 	no_character_ds = list(map(refactoring, dataset))
 	return no_character_ds
 
@@ -147,7 +147,7 @@ def filter_valid_stocks(dataset:list):
 				memory = x
 				time.sleep(0.001)
 				check(x)
-	
+
 	print("[INFO] Checking Validity of stock symbols")
 	for stock in dataset:
 		thread = threading.Thread(target=filter_valid_stocks_task, args=(stock,))
@@ -212,9 +212,9 @@ def update_create_db(dataset:list) -> None:
 			return None
 	for item in dataset:
 		ticker_record = get_current_symbol_state(item[0])
-		if ticker_record: # updates field if already exists
+		if ticker_record: # Update by adding
 			ticker_record.stock_ticker = item[0]
-			ticker_record.stock_mentions = item[1]
+			ticker_record.stock_mentions = ticker_record.stock_mentions + item[1]
 			ticker_record.save(update_fields=['stock_ticker', 'stock_mentions'])
 		else: # creates a new field if it hasnt
 			RedditStocksDB.objects.create(stock_ticker=item[0], stock_mentions=item[1])

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+{% load static%}
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Reddit Stock Watcher | GET THE STATISTICS ON STOCK MENTIONS IN POPULAR SUBREDDIT</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'frontend/assests/css/bootstrap.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'frontend/assests/css/style.css'%}">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
+	<style type="text/css">
+		 div.vertical-line{
+		 	width: 1px; /* Line width */
+		 	background-color: black; /* Line color */
+		 	height: 100%; /* Override in-line if you want specific height. */
+		 	float: left; 
+    	}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+		<a class="navbar-brand" href="#" style="font-family:'DotGothic16', sans-serif; color: powderblue;">
+			<i class="fab fa-reddit"></i>
+			<i> Reddit Stock Watcher </i>
+			<i class="fas fa-chart-line"></i>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item active">
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="#" style="color: powderblue"> <i class="far fa-address-book"></i> Contact</a>
+		  </li>
+		  <li class="nav-item" >
+		    <a class="nav-link" href="#" style="color: powderblue"> <i class="fas fa-users"></i> About </a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="#" style="color: powderblue"> <i class="fas fa-book"></i> Documentation</a>
+		  </li>
+		  <li class="nav-item dropdown">
+		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: powderblue;">
+		      More
+		    </a>
+		    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		      <a class="dropdown-item" href="#">Action</a>
+		      <a class="dropdown-item" href="#">Another action</a>
+		      <a class="dropdown-item" href="#">Something else here</a>
+		    </div>
+		  </li>
+		</ul>
+		</div>
+	</nav>
+	<div id="react-app">
+	</div>
+	<script src="https://kit.fontawesome.com/4098d0325b.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{%static 'frontend/assests/js/script.js'%}"></script>
+	<script type="text/javascript" src="{% static 'frontend/main.js'%}"></script>
+</body>
+</html>

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django_extensions",
     #third party apps,
     'reddit',
+    'frontend'
 
 ]
 
@@ -123,3 +124,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+

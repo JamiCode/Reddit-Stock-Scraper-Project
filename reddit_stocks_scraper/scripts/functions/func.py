@@ -4,7 +4,6 @@ import time
 import threading
 import finnhub
 from collections import Counter
-from emoji import emojize
 from datetime import datetime, date
 from reddit.models import RedditStocksDB
 #setup zone

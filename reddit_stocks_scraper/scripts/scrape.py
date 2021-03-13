@@ -105,17 +105,23 @@ class Reddit:
 					else:
 						continue
 			else:
-				current_date = datetime.utcnow()
 				scrape_time = datetime(
-					current_date.year, 
-					current_date.month, 
-					current_date.day, 
-					4
+					datetime.utcnow().year, 
+					datetime.utcnow().month, 
+					datetime.utcnow().day, 
+					0
 					)
-				difference = scrape_time - datetime.utcnow()
-				wait = difference.total_seconds()
-				print("[INFO] Waiting for time to scrape")
-				time.sleep(wait)
+				difference =  datetime.utcnow() -  scrape_time
+				try:
+					wait = difference.total_seconds()
+					print(wait)
+					print("[INFO] Waiting for time to scrape")
+					print(f"Wait for {wait} seconds")
+					time.sleep(wait)
+				except Exception as error:
+					if error == "ValueError: sleep length must be non-negative":
+						print("ValueInteger Error happened again")
+
 
 
 

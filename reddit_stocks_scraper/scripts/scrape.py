@@ -77,7 +77,7 @@ class Reddit:
 		intial_scrape_value = None
 		counter_inner = 0
 		while True:
-			# if the time is when is 12pm, start scraping for yesterday		
+			# if the time is when is 12pm, start scraping for yesterday
 			if datetime.utcnow().hour == 0:
 				if intial_scrape_value == None:
 					intial_scrape_value = True
@@ -106,22 +106,17 @@ class Reddit:
 						continue
 			else:
 				scrape_time = datetime(
-					datetime.utcnow().year, 
-					datetime.utcnow().month, 
-					datetime.utcnow().day, 
+					datetime.utcnow().year,
+					datetime.utcnow().month,
+					datetime.utcnow().day + 1,
 					0
 					)
-				difference =  datetime.utcnow() -  scrape_time
-				try:
-					wait = difference.total_seconds()
-					print(wait)
-					print("[INFO] Waiting for time to scrape")
-					print(f"Wait for {wait} seconds")
-					time.sleep(wait)
-				except Exception as error:
-					if error == "ValueError: sleep length must be non-negative":
-						print("ValueInteger Error happened again")
-
+				difference = scrape_time - datetime.utcnow()
+			
+				wait = difference.total_seconds()
+				print("[INFO] Waiting for time to scrape")
+				print(f"Wait for {wait} seconds")
+				time.sleep(wait)
 
 
 

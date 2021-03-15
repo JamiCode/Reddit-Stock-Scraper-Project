@@ -9,12 +9,27 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'frontend/assests/css/style.css'%}">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
 	<style type="text/css">
-		 div.vertical-line{
-		 	width: 1px; /* Line width */
-		 	background-color: black; /* Line color */
-		 	height: 100%; /* Override in-line if you want specific height. */
-		 	float: left; 
-    	}
+	 /* width of scrollbar*/
+	::-webkit-scrollbar {
+	  width: 10px;
+	  height: 8px;
+	  border-radius: 20px;
+	}
+
+	/* Track of the scroll bar*/
+	::-webkit-scrollbar-track {
+	  background: #c3d0e6; 
+	}
+	 
+	/* Handle of the scrollbar*/
+	::-webkit-scrollbar-thumb {
+	  background: grey; 
+	}
+
+	/* Handle on hover, when clicked */
+	::-webkit-scrollbar-thumb:hover {
+	  background: #1f72ff; 
+	}
 	</style>
 </head>
 <body>
@@ -53,7 +68,9 @@
 		</ul>
 		</div>
 	</nav>
-	<div id="react-app">
+	<div class="main">
+			<div id="react-app">
+			</div>
 	</div>
 	<script src="https://kit.fontawesome.com/4098d0325b.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{%static 'frontend/assests/js/script.js'%}"></script>

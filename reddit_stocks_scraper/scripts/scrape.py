@@ -2,7 +2,7 @@ import time
 import datetime
 import emojis
 from psaw import PushshiftAPI
-from reddit.models import RedditStocksDB
+from reddit.models import RedditWallStreetBetsStocksDB
 from collections import Counter
 from datetime import datetime, date, timedelta
 from .functions.func  import *
@@ -177,7 +177,7 @@ class Reddit:
 
 def run():
 	wall_street_bets = Reddit("wallstreetbets")
-	wall_street_bets.begin_scrape_for_yesterday()
+	wall_street_bets.begin_scrape_from_default()
 	satistics = wall_street_bets.statistic_count
 	unserialized_dict = unserialize_dict(satistics)
 	update_create_db(unserialized_dict)

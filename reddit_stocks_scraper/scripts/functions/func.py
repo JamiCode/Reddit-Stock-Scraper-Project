@@ -1,11 +1,16 @@
+# THIS FILE IS THE FUNCTION UTILITY FILE, THIS IS WHERE ALL THE FUNCTIONS ARE DUMPED FOR SCRIPTING SCRAPING PURPOSES
+
+
 import emojis
 import datetime
 import time
 import threading
 import finnhub
+import praw
 from collections import Counter
 from datetime import datetime, date
-from reddit.models import RedditStocksDB
+from scripts.credentials.the_reddit_instance import reddit
+from reddit.models import RedditWallStreetBetsStocksDB
 #setup zone
 # api for stock checking
 finnhub_client = finnhub.Client(api_key="c0udc3v48v6r0udvod5g")
@@ -22,6 +27,18 @@ def get_date(submission):
 	""" GETS datetime obj"""
 	time = submission.created
 	return datetime.fromtimestamp(time)
+
+def get_date_utc(submission):
+	date = submission.created_utc
+	date_obj = datetime.fromtimestamp(date)
+	date_formatted = date_obj.strftime("%x")
+	return date_formatted
+
+def get_time_utc(submission):
+	time = submission.created_utc
+	time_obj = datetime.fromtimestamp(time)
+	time_formatted = time_obj.strftime("%X")
+	return time_formatted
 
 # removes all $
 def cash_tag_remover(dataset : list):
@@ -204,7 +221,7 @@ def unserialize_dict(dateset:dict):
 
 def update_create_db(dataset:list) -> None:
 	def get_current_symbol_state(ticker):
-		symbol = RedditStocksDB.objects.filter(stock_ticker=ticker)
+		symbol = RedditWallStreetBetsStocksDB.objects.filter(stock_ticker=ticker)
 		if symbol.exists():
 			return symbol[0]
 		else:
@@ -216,4 +233,120 @@ def update_create_db(dataset:list) -> None:
 			ticker_record.stock_mentions = ticker_record.stock_mentions + item[1]
 			ticker_record.save(update_fields=['stock_ticker', 'stock_mentions'])
 		else: # creates a new field if it hasnt
-			RedditStocksDB.objects.create(stock_ticker=item[0], stock_mentions=item[1])
+			RedditWallStreetBetsStocksDB.objects.create(stock_ticker=item[0], stock_mentions=item[1])
+#-------------FUNCTIONS REGARDING REDDIT CATEGORY SCRAPING--------------
+
+def statistics_hot_data(subreddit:str) -> list :
+	""" Function that getts only the hottest threads from reddit"""
+	#[{ Title:{User:h, ups:h, downs:h, created_at:h} }]
+	statistics_dictionary = dict()
+	subreddit = reddit.subreddit(subreddit)
+	subreddit_hot = subreddit.hot(limit=None) 
+
+	for submission in subreddit_hot:
+		if not submission.stickied:
+			title = submission.title
+			date_created = get_date_utc(submission)
+			time_created = get_time_utc(submission)
+			if submission.author is None or submission.author == None:
+				print(submission.author, "is none")
+				author = submission.author
+			else:
+				author = submission.author.name
+			ups = submission.ups
+			comments = submission.num_comments
+			upvote_ratio = submission.upvote_ratio
+			url = f"https://reddit.com{submission.permalink}"
+			statistics_dictionary[title] = {"author" :author, "upvotes":ups, "comments":comments, "upvoteRatio":upvote_ratio, "url":url, "dateCreated":date_created, "timeCreated":time_created}
+	return statistics_dictionary
+
+#the following functions are  under testing construction
+def statistics_top_data(subreddit:str) -> list :
+	""" Function that getts only the Top(Toppest) threads from reddit"""
+	#[{ Title:{User:h, ups:h, downs:h, created_at:h} }]
+	statistics_dictionary = dict()
+	subreddit = reddit.subreddit(subreddit)
+	subreddit_top = subreddit.top(limit=None)
+
+	for submission in subreddit_top:
+		if not submission.stickied:
+			title = submission.title
+			date_created = get_date_utc(submission)
+			time_created = get_time_utc(submission)
+			if submission.author is None or submission.author == None:
+				author = submission.author
+			else:
+				author = submission.author.name
+			ups = submission.ups
+			comments = submission.num_comments
+			upvote_ratio = submission.upvote_ratio
+			url = f"https://reddit.com{submission.permalink}"
+			statistics_dictionary[title] = {"author" :author, "upvotes":ups, "comments":comments, "upvoteRatio":upvote_ratio, "url":url, "dateCreated":date_created, "timeCreated":time_created}
+	return statistics_dictionary
+
+def statistics_new_data(subreddit:str) -> list :
+	""" Function that getts only the Top(Toppest) threads from reddit"""
+	#[{title:{}}]
+	statistics_dictionary = dict()
+	subreddit = reddit.subreddit(subreddit)
+	subreddit_new = subreddit.new(limit=None)
+
+	for submission in subreddit_new:
+		if not submission.stickied:
+			title = submission.title
+			date_created = get_date_utc(submission)
+			time_created = get_time_utc(submission)
+			if submission.author is None or submission.author == None:
+				print(submission.author, "is none")
+				author = submission.author
+			else:
+				author = submission.author.name
+			ups = submission.ups
+			comments = submission.num_comments
+			upvote_ratio = submission.upvote_ratio
+			url = f"https://reddit.com{submission.permalink}"
+			statistics_dictionary[title] = {"author" :author, "upvotes":ups, "comments":comments, "upvoteRatio":upvote_ratio, "url":url, "dateCreated":date_created, "timeCreated":time_created}
+	return statistics_dictionary
+
+
+#The below Function is no longer needed, but is here for code referencing
+def check_data_in_db(databaseModel, dataset) -> bool:
+	""" Checks whether data is present already in database"""
+	def unserialize_database_data(x):
+		#order = (title, author, upvotes, comments, up_votes_ratio, url, date_created, time_created)
+		title 			= x.title
+		author 			= x.author
+		upvotes 		= x.upvotes
+		comments 		= x.comments
+		up_votes_ratio 	= x.up_votes_ratio
+		url				= x.url
+		date_created 	= x.date_created
+		time_created	= x.time_created
+		unserialized 	= (title, author, upvotes, comments, up_votes_ratio, url, date_created, time_created)
+		return unserialized
+	def unserialize_dataset_data(t:tuple):
+		title  			= t[0]
+		author 			= dataset[t[0]]["author"]
+		upvotes 		= dataset[t[0]]["upvotes"]
+		comments		= dataset[t[0]]["comments"]
+		up_votes_ratio	= dataset[t[0]]["upvoteRatio"]
+		url				= dataset[t[0]]["url"]
+		date_created	= dataset[t[0]]["dateCreated"]
+		time_created	= dataset[t[0]]["timeCreated"]
+		unserialized	= (title, author, upvotes, comments, up_votes_ratio, url, date_created, time_created)
+		return unserialized
+
+	database_data = list(databaseModel.objects.all())
+	dataset_data = dataset.items()
+	#list of tuples
+	unserialized_database_data  = list(map(unserialize_database_data, database_data))
+	#list of tuples
+	unserialized_dataset_data 	=list(map(unserialize_dataset_data, list(dataset_data)))
+
+	if unserialized_database_data == unserialized_dataset_data:
+		print(unserialized_database_data)
+		return True
+	if unserialized_database_data != unserialized_dataset_data:
+		return False
+	else:
+		return "Something Happened"

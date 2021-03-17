@@ -112,7 +112,7 @@ class Reddit:
 					0
 					)
 				difference = scrape_time - datetime.utcnow()
-			
+
 				wait = difference.total_seconds()
 				print("[INFO] Waiting for time to scrape")
 				print(f"Wait for {wait} seconds")

@@ -5,26 +5,20 @@ html, body, {
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	/*color: white;*/
+}
+.otherhalf{
+	margin-top: 54px;
+	border-right:3.4px solid black;
+	width: 50%;
+	height:580px;
+	background-color: #3b4554;
 }
 
-#main{
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
 
-}
-
-#react-app{
-	width:100%;
-	height: 100%;
-}
 .DemoBox{
-	position: fixed;
+	position: absolute;
 	top: 50%;
-	left: 74%;
+	left: 77%;
 	transform: translate(-50%, -50%);
 }
 
@@ -38,6 +32,8 @@ html, body, {
 	background-color: #343a40;
 	overflow-x: hidden;
 	overflow-y: scroll;
+	margin-bottom: 0px;
+*/
 }
 hr {
     border: none;
@@ -46,3 +42,92 @@ hr {
     color: #333; /* old IE */
     background-color: #ff1f2e; /* Modern Browsers */
 }
+
+/* CSS for submission link*/
+
+.submission-link{
+	color:black;
+}
+
+/* CSS for submission link author*/
+.submission-link:hover{
+	color: grey;
+	text-decoration: none;
+}
+
+/* Remove outline when clicked button*/
+button:hover, button:focus {
+  outline: none;
+}
+
+
+.tabs__container{
+	margin-left: 74px;
+}
+
+
+.tabs_button{
+	border:none;
+	outline: none;
+	cursor:pointer;
+	background-color: #343a40;
+	color: #eee;
+	width: 175px;
+	padding: 14px 16px;
+	border-right: 3px solid #ff4301;
+	margin-bottom: 16px;
+	margin-top: 76px;
+}
+
+
+.tabs_button:hover{
+	border-bottom: 3px solid #38ebd3;
+}
+
+.tab-hot-hover:hover{
+	color:#ff4301;
+}
+
+.tab-top-hover:hover{
+	color:#4e98ed;
+}
+
+.tab-new-hover:hover{
+	color:#17cf4e;
+}
+
+.demoText{
+	font-family: 'Indie Flower', cursive;
+}
+
+.butn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.butn:hover {
+  background-color: RoyalBlue;
+}
+.icon-button{
+	background-color: powderblue;
+	border:none;
+	cursor:pointer;
+}
+
+#entry-button{
+	margin-top: 50%;
+	margin-left: 35%;
+}
+
+#typewriter{
+	position: relative;
+	left: 35%;
+	top: 50%;
+	font-family: "DotGothic16";
+	color: white;
+}
+

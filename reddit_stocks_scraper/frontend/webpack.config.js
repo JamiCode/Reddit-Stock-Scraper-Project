@@ -7,7 +7,12 @@ module.exports = {
         use: {
           loader: "babel-loader"
         }
-      }
+      },
+      {
+        exclude: /node_modules/,
+        test: /\.(svg|png|jpg|gif)$/,
+        use: "file-loader",
+      },
     ]
   }
 };

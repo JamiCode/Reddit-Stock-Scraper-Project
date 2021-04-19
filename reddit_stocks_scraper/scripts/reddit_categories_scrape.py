@@ -186,13 +186,16 @@ class RedditCategories:
 
 def run():
 	""" Entry point for runscript"""
-	while True:
-		wallstreetbets_category = RedditCategories("wallstreetbets")
-		print(f"[INFO] Watching out for{wallstreetbets_category.subreddit} categories")
-		wallstreetbets_category.get_stats_hot_data()
-		wallstreetbets_category.get_stats_top_data()
-		wallstreetbets_category.get_stats_new_data()
-		wallstreetbets_category.update_add_hot_to_db()
-		wallstreetbets_category.update_add_top_to_db()
-		wallstreetbets_category.update_add_new_to_db()
-
+	wallstreetbets_category = RedditCategories("wallstreetbets")
+	print(f"[INFO] Watching out for {wallstreetbets_category.subreddit} categories")
+	wallstreetbets_category.get_stats_hot_data()
+	print(wallstreetbets_category.stock_hot_data)
+	print("[INFO] DONE WITH HOT")
+	wallstreetbets_category.get_stats_top_data()
+	print("[INFO] DONE WITH TOP")
+	wallstreetbets_category.get_stats_new_data()
+	print("[INFO] DONE WITH NEW")
+	wallstreetbets_category.update_add_hot_to_db()
+	wallstreetbets_category.update_add_top_to_db()
+	wallstreetbets_category.update_add_new_to_db()
+	print("[INFO] Done Updating")

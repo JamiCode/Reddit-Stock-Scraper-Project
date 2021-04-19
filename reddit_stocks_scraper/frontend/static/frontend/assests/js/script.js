@@ -1,12 +1,8 @@
-let i = 0;
-let txt = 'Lorem ipsum typing effect!'; /* The text */
-let speed = 60 * 90000000000000; /* The speed/duration of the effect in milliseconds */
+var options = {
+  strings: ['Reddit Stock Watcher!', 'Watch Live Stock Mentions.', "On Reddit!"],
+  typeSpeed: 40,
+  loop:true
+};
 
-function typeWriter() {
-  if (i < txt.length) {
-    document.getElementById("type").innerHTML += txt.charAt(i);
-    i++;
-    setTimeout(typeWriter, speed);
-  }
-}
-typeWriter();
+
+var typed = new Typed('h3', options);

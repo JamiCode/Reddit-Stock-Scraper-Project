@@ -8,32 +8,36 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'frontend/assests/css/bootstrap.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'frontend/assests/css/style.css'%}">
 	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 	<style type="text/css">
 	 /* width of scrollbar*/
-	::-webkit-scrollbar {
+	/*::-webkit-scrollbar {
 	  width: 10px;
 	  height: 8px;
 	  border-radius: 20px;
-	}
+	}*/
 
 	/* Track of the scroll bar*/
-	::-webkit-scrollbar-track {
+	/*::-webkit-scrollbar-track {
 	  background: #c3d0e6; 
-	}
+	}*/
 	 
 	/* Handle of the scrollbar*/
-	::-webkit-scrollbar-thumb {
+	/*::-webkit-scrollbar-thumb {
 	  background: grey; 
-	}
+	}*/
 
 	/* Handle on hover, when clicked */
-	::-webkit-scrollbar-thumb:hover {
+	/*::-webkit-scrollbar-thumb:hover {
 	  background: #1f72ff; 
-	}
+	}*/
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
 		<a class="navbar-brand" href="#" style="font-family:'DotGothic16', sans-serif; color: powderblue;">
 			<i class="fab fa-reddit"></i>
 			<i> Reddit Stock Watcher </i>
@@ -68,12 +72,23 @@
 		</ul>
 		</div>
 	</nav>
-	<div class="main">
-			<div id="react-app">
-			</div>
+	<div class="otherhalf" id="entry-point">
+		<h3 id="typewriter"></h3>
+		<a href="#" class="btn btn-outline-success btn-lg"id="entry-button"> GET STARTED </a>
+		<br>
+		<br>
+		<p style="margin-left:199px; color:powderblue;"><i> Check out the Demo Live feed on your right! </i></p>
+
 	</div>
+	<!-- Demo App Powered by React -->
+	<div id="react-app">
+	</div>
+
+	<!-- Script Addition Section -->
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 	<script src="https://kit.fontawesome.com/4098d0325b.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{%static 'frontend/assests/js/script.js'%}"></script>
 	<script type="text/javascript" src="{% static 'frontend/main.js'%}"></script>
+	<!-- End Script Addition Section-->
 </body>
 </html>

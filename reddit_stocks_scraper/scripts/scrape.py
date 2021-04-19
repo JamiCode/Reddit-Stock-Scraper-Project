@@ -177,7 +177,7 @@ class Reddit:
 
 def run():
 	wall_street_bets = Reddit("wallstreetbets")
-	wall_street_bets.begin_scrape_from_default()
+	wall_street_bets.begin_scrape_for_yesterday()
 	satistics = wall_street_bets.statistic_count
 	unserialized_dict = unserialize_dict(satistics)
 	update_create_db(unserialized_dict)

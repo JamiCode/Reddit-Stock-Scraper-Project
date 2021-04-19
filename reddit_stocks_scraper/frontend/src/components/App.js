@@ -1,7 +1,10 @@
 import React from 'react';
-import DemoBox from "./DemoBox"
+import DemoBoxHot from "./DemoBoxHot";
 import { render } from "react-dom";
+import MainDemoBox from "./MainDemoBox"
 
+
+// Main App Component
 class App extends React.Component {
 
 	constructor(props) {
@@ -12,7 +15,7 @@ class App extends React.Component {
 		return (
 			<div>
 				<div className="DemoBox">
-				<DemoBox/>
+				<MainDemoBox/>
 				</div>
 			</div>
 		);

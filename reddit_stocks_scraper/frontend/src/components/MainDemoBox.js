@@ -37,7 +37,7 @@ export default class MainDemoBox extends React.Component {
 			onShow:'hot'
 		}
 		this.buttonStyleActive = {
-			borderBottom:'solid 3px red'
+			borderBottom:'solid 2px red'
 		}
 		//bind zone
 		this.handleHotButtonClick = this.handleHotButtonClick.bind(this);
@@ -68,7 +68,7 @@ export default class MainDemoBox extends React.Component {
 		this.setState({
 			onShow:'hot',
 		})
-		this.buttonStyle['borderBottom'] = "solid 1px red";
+		this.buttonStyle['borderBottom'] = "solid 2px red";
 	}
 
 	handleTopButtonClick(event){
@@ -124,15 +124,8 @@ export default class MainDemoBox extends React.Component {
 
 	render() {
 		return (
-			<div> 
+			<div className="DemoBox"> 
 				<div className="tabs__container">
-					{/*<center> 
-						<i>
-							<p className="demoText" style={HeaderButtonStyle}> 
-								<i className="fas fa-bolt"></i> Subreddit Demo Live Feed <i class="fas fa-bolt"></i> 
-							</p>
-						</i>
-					</center>*/}
 					<button
 					style={this.handleHotStyle()} 
 					className="tabs_button tab-hot-hover" 

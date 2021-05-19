@@ -19,7 +19,7 @@ const paperStyle = {
 	marginTop:4,
 }
 const DemoStyle = {
-	backgroundColor:'#343a40',
+	backgroundColor:'#23272a',
 }
 
 const authorStyles = {

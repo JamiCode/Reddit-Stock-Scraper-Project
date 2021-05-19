@@ -10,8 +10,8 @@ app_name = "reddit"
 urlpatterns = [
 	path('api/stocks-overall-view-wallstreetbets',
 		RedditStocksDBListView.as_view(), name="overall-wallstreetbet-view"),
-	path('api/stocks-hot-wallstreetbets', RedditWallStreetBetsHotAPIView.as_view(), name="wallsteetbets-hot"),
-	path('api/stocks-new-wallstreetbets', RedditWallStreetBetsNewAPIView.as_view(), name="wallsteetbets-new"),
-	path('api/stocks-top-wallstreetbets', RedditWallStreetBetsTopAPIView.as_view(), name="wallsteetbets-top")
+	path('api/stocks-hot-wallstreetbets', RedditWallStreetBetsHotAPIView.as_view(), name="wallsteetbets-hot-api"),
+	path('api/stocks-new-wallstreetbets', RedditWallStreetBetsNewAPIView.as_view(), name="wallsteetbets-new-api"),
+	path('api/stocks-top-wallstreetbets', RedditWallStreetBetsTopAPIView.as_view(), name="wallsteetbets-top-api")
 	
 ]

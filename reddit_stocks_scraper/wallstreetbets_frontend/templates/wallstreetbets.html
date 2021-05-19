@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+{% load static%}
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Reddit Stock Watcher | GET THE STATISTICS ON STOCK MENTIONS IN POPULAR SUBREDDIT</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'assests/css/bootstrap.css'%}">
+	<link rel="stylesheet" type="text/css" href="{% static 'assests/css/style.css'%}">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap" rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+	<style type="text/css">
+	 /* width of scrollbar*/
+	::-webkit-scrollbar {
+	  width: 10px;
+	  height: 8px;
+	  border-radius: 20px;
+	}
+
+	/* Track of the scroll bar*/
+	::-webkit-scrollbar-track {
+	  background: #c3d0e6; 
+	}
+	 
+	/* Handle of the scrollbar*/
+	::-webkit-scrollbar-thumb {
+	  background: grey; 
+	}
+
+	/* Handle on hover, when clicked */
+	::-webkit-scrollbar-thumb:hover {
+	  background: #1f72ff; 
+	}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+		<a class="navbar-brand" href="#" style="font-family:'DotGothic16', sans-serif; color: powderblue;">
+			<i class="fab fa-reddit"></i>
+			<i> Reddit Stock Watcher </i>
+			<i class="fas fa-chart-line"></i>
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavDropdown">
+		<ul class="navbar-nav ml-auto">
+		  <li class="nav-item active">
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="#" style="color: powderblue"> <i class="far fa-address-book"></i> Contact</a>
+		  </li>
+		  <li class="nav-item" >
+		    <a class="nav-link" href="#" style="color: powderblue"> <i class="fas fa-users"></i> About </a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" href="#" style="color: powderblue"> <i class="fas fa-book"></i> Documentation</a>
+		  </li>
+		  <li class="nav-item dropdown">
+		    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: powderblue;">
+		      More
+		    </a>
+		    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+		      <a class="dropdown-item" href="#">Action</a>
+		      <a class="dropdown-item" href="#">Another action</a>
+		      <a class="dropdown-item" href="#">Something else here &times;</a>
+		    </div>
+		  </li>
+		</ul>
+		</div>
+	</nav>
+	<!-- Demo App Powered by React -->
+	<div class="container-lg" id="react-graph-comp">
+		<div id="react">
+		</div>
+	</div>
+	
+
+	<!-- Script Addition Section -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{% static 'assests/js/bootstrap.js' %}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+	<script src="https://kit.fontawesome.com/4098d0325b.js" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{% static 'main.js'%}"></script>
+	<!-- End Script Addition Section-->
+</body>
+</html>
+

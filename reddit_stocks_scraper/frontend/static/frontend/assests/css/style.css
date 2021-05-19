@@ -11,7 +11,11 @@ html, body, {
 	border-right:3.4px solid black;
 	width: 50%;
 	height:580px;
-	background-color: #3b4554;
+	background-color: #23272a;
+}
+.modal{
+	background-color: black;
+	height: 600px;
 }
 
 
@@ -74,18 +78,18 @@ button:hover, button:focus {
 	color: #eee;
 	width: 175px;
 	padding: 14px 16px;
-	border-right: 3px solid #ff4301;
+	border-right: 2px solid #ff4301;
 	margin-bottom: 16px;
 	margin-top: 76px;
 }
 
 
 .tabs_button:hover{
-	border-bottom: 3px solid #38ebd3;
+	border-bottom: 2px solid #38ebd3;
 }
 
 .tab-hot-hover:hover{
-	color:#ff4301;
+	color:#4e98ed;
 }
 
 .tab-top-hover:hover{
@@ -93,7 +97,7 @@ button:hover, button:focus {
 }
 
 .tab-new-hover:hover{
-	color:#17cf4e;
+	color:#4e98ed;
 }
 
 .demoText{
@@ -119,14 +123,14 @@ button:hover, button:focus {
 }
 
 #entry-button{
-	margin-top: 50%;
-	margin-left: 35%;
+	margin-top: 30%;
+	margin-left: 250px;
 }
 
 #typewriter{
 	position: relative;
-	left: 35%;
-	top: 50%;
+	left: 30%;
+	top: 16%;
 	font-family: "DotGothic16";
 	color: white;
 }

@@ -69,7 +69,8 @@ class RedditCategories:
 				data_record.up_votes_ratio		=	data[4] 	
 				data_record.url 				=	data[5]
 				data_record.date_created 		=	data[6]	
-				data_record.time_created 		=	data[7]	
+				data_record.time_created 		=	data[7]
+				data_record.save()	
 			else:
 				#Create a record in db
 				RedditWallStreetBetsHotDB.objects.create(
@@ -119,7 +120,8 @@ class RedditCategories:
 				data_record.up_votes_ratio		=	data[4] 	
 				data_record.url 				=	data[5]
 				data_record.date_created 		=	data[6]	
-				data_record.time_created 		=	data[7]	
+				data_record.time_created 		=	data[7]
+				data_record.save()	
 			else:
 				#Create a record in db
 				RedditWallStreetBetsTopDB.objects.create(
@@ -169,6 +171,7 @@ class RedditCategories:
 				data_record.url 				=	data[5]
 				data_record.date_created 		=	data[6]	
 				data_record.time_created 		=	data[7]	
+				data_record.save()
 			else:
 				#Create a record in db
 				RedditWallStreetBetsNewDB.objects.create(
@@ -189,7 +192,6 @@ def run():
 	wallstreetbets_category = RedditCategories("wallstreetbets")
 	print(f"[INFO] Watching out for {wallstreetbets_category.subreddit} categories")
 	wallstreetbets_category.get_stats_hot_data()
-	print(wallstreetbets_category.stock_hot_data)
 	print("[INFO] DONE WITH HOT")
 	wallstreetbets_category.get_stats_top_data()
 	print("[INFO] DONE WITH TOP")
@@ -199,3 +201,7 @@ def run():
 	wallstreetbets_category.update_add_top_to_db()
 	wallstreetbets_category.update_add_new_to_db()
 	print("[INFO] Done Updating")
+
+
+
+ 

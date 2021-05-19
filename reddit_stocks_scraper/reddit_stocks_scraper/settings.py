@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     "django_extensions",
     #third party apps,
     'reddit',
-    'frontend'
+    'frontend',
+    'wallstreetbets_frontend'
 
 ]
 

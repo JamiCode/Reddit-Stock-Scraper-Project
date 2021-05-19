@@ -19,7 +19,7 @@ const paperStyle = {
 	marginTop:4,
 }
 const DemoStyle = {
-	backgroundColor:'#343a40',
+	backgroundColor:'#23272a',
 }
 
 const authorStyles = {
@@ -58,7 +58,7 @@ export class Submission extends React.Component {
 		super(props);
 		this.state = {}
 		//bind zone
-		this.handlerRefreshClickEvent = this.handlerRefreshClickEvent.bind(this)
+		this.handlerRefreshClickEvent 	=	this.handlerRefreshClickEvent.bind(this)
 	}
 
 	
@@ -70,6 +70,7 @@ export class Submission extends React.Component {
 		this.props.onCommentsChange(index)
 		this.props.onDateChange(index)
 		this.props.onTimeChange(index)
+		this.props.onUpvotesChange(index)
 
 	}
 
@@ -164,7 +165,11 @@ export default class DemoBoxHot extends React.Component {
 		this.onAuthorChange 	= this.onAuthorChange.bind(this)
 		this.onTitleChange 		= this.onTitleChange.bind(this)
 		this.onURLChange 		= this.onURLChange.bind(this)
-		this.onUpvotesChange 	= this.onUpvotesChange.bind(this)		
+		this.onUpvotesChange 	= this.onUpvotesChange.bind(this)
+		this.onCommentsChange 	= this.onCommentsChange.bind(this)
+		this.onDateChange 		= this.onDateChange.bind(this)
+		this.onTimeChange		= this.onTimeChange.bind(this)
+
 	}
 
 
@@ -545,7 +550,7 @@ export default class DemoBoxHot extends React.Component {
 			}
 		})
 	}
-	onUpvotesChange(){
+	onUpvotesChange(index){
 		fetch("/reddit/api/stocks-hot-wallstreetbets?format=json")
 		.then((response)=>{return response.json()})
 		.then((data)=>{
@@ -582,7 +587,7 @@ export default class DemoBoxHot extends React.Component {
 		})
 	}
 
-	onCommentsChange(){
+	onCommentsChange(index){
 		fetch("/reddit/api/stocks-hot-wallstreetbets?format=json")
 		.then((response)=>{return response.json()})
 		.then((data)=>{
@@ -619,7 +624,7 @@ export default class DemoBoxHot extends React.Component {
 		})
 	}
 
-	onDateChange(){
+	onDateChange(index){
 		fetch("/reddit/api/stocks-hot-wallstreetbets?format=json")
 		.then((response)=>{return response.json()})
 		.then((data)=>{
@@ -656,7 +661,7 @@ export default class DemoBoxHot extends React.Component {
 		})
 	}
 
-	onTimeChange(){
+	onTimeChange(index){
 		fetch("/reddit/api/stocks-hot-wallstreetbets?format=json")
 		.then((response)=>{return response.json()})
 		.then((data)=>{

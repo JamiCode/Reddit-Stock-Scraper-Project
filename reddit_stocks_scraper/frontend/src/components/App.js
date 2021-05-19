@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
+import ReactDOM from "react-dom";
 import DemoBoxHot from "./DemoBoxHot";
 import { render } from "react-dom";
-import MainDemoBox from "./MainDemoBox"
-
+import MainDemoBox from "./MainDemoBox";
 
 // Main App Component
 class App extends React.Component {
@@ -13,14 +13,16 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<div className="DemoBox">
+			<div className="App">
 				<MainDemoBox/>
-				</div>
 			</div>
 		);
 	}
 }
+
+
+
+
 
 export default App;
 const container = document.getElementById("react-app");

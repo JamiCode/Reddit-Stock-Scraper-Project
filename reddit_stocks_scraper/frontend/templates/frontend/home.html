@@ -14,26 +14,26 @@
 	<link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
 	<style type="text/css">
 	 /* width of scrollbar*/
-	/*::-webkit-scrollbar {
+	::-webkit-scrollbar {
 	  width: 10px;
 	  height: 8px;
 	  border-radius: 20px;
-	}*/
+	}
 
 	/* Track of the scroll bar*/
-	/*::-webkit-scrollbar-track {
+	::-webkit-scrollbar-track {
 	  background: #c3d0e6; 
-	}*/
+	}
 	 
 	/* Handle of the scrollbar*/
-	/*::-webkit-scrollbar-thumb {
+	::-webkit-scrollbar-thumb {
 	  background: grey; 
-	}*/
+	}
 
 	/* Handle on hover, when clicked */
-	/*::-webkit-scrollbar-thumb:hover {
+	::-webkit-scrollbar-thumb:hover {
 	  background: #1f72ff; 
-	}*/
+	}
 	</style>
 </head>
 <body>
@@ -66,25 +66,51 @@
 		    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 		      <a class="dropdown-item" href="#">Action</a>
 		      <a class="dropdown-item" href="#">Another action</a>
-		      <a class="dropdown-item" href="#">Something else here</a>
+		      <a class="dropdown-item" href="#">Something else here &times;</a>
 		    </div>
 		  </li>
 		</ul>
 		</div>
 	</nav>
 	<div class="otherhalf" id="entry-point">
-		<h3 id="typewriter"></h3>
-		<a href="#" class="btn btn-outline-success btn-lg"id="entry-button"> GET STARTED </a>
-		<br>
-		<br>
-		<p style="margin-left:199px; color:powderblue;"><i> Check out the Demo Live feed on your right! </i></p>
-
+		<img src="{% static 'frontend/assests/images/statsPic.jpg'%}" alt="statistic picture" height="250" width="677">
+		<h3 id="typewriter"></h3> <!-- TypeWriter -->
+		<button class="btn btn-outline-success btn-lg"id="entry-button" data-toggle="modal" data-target="#exampleModal"> GET STARTED</button>
 	</div>
 	<!-- Demo App Powered by React -->
 	<div id="react-app">
 	</div>
 
+	<!-- Button trigger modal -->
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Select a Subreddit for further statistical evaluation</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<a class="btn btn-primary" href="{% url 'wallstreetbets:wallstreetbet_index' %}"> 
+						<i class="fab fa-reddit"></i> r/wallstreetbets
+					</a>
+					<button class="btn btn-warning"> 
+						<i class="fab fa-reddit"></i> r/stocks
+					</button>
+				</div>
+				<div class="modal-footer">
+					<i class="fab fa-reddit"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Script Addition Section -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{%static 'frontend/assests/js/bootstrap.js' %}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 	<script src="https://kit.fontawesome.com/4098d0325b.js" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{%static 'frontend/assests/js/script.js'%}"></script>
@@ -92,3 +118,4 @@
 	<!-- End Script Addition Section-->
 </body>
 </html>
+

@@ -6,5 +6,6 @@ app_name = "main"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('reddit/', include('reddit.urls')),
-    path('',home_view)
+    path('',home_view,name="home"),
+    path('wallstreetbets/statistics/', include('wallstreetbets_frontend.urls',), name="wallstreetbets")
 ]

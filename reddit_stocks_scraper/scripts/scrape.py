@@ -78,7 +78,7 @@ class Reddit:
 		counter_inner = 0
 		while True:
 			# if the time is when is 12pm, start scraping for yesterday
-			if datetime.utcnow().hour == 0:
+			if datetime.utcnow().hour >= 0:
 				if intial_scrape_value == None:
 					intial_scrape_value = True
 					print("Beginning to Scrape for the day")
@@ -178,7 +178,9 @@ class Reddit:
 def run():
 	wall_street_bets = Reddit("wallstreetbets")
 	wall_street_bets.begin_scrape_for_yesterday()
-	satistics = wall_street_bets.statistic_count
-	unserialized_dict = unserialize_dict(satistics)
+	statistics = wall_street_bets.statistic_count
+	unserialized_dict = unserialize_dict(statistics)
+	print(statistics)
+	print(unserialized_dict)
 	update_create_db(unserialized_dict)
 	print("Done Updating/Creating Database")

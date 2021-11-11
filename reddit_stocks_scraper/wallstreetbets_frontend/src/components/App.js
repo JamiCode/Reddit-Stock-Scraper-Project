@@ -7,7 +7,7 @@ const App = (props) => {
 
 
   return (
-    <div>
+    <div className="statistics-graph container-fluid">
      	<WallStreetBetsGraph/>
     </div>
   )

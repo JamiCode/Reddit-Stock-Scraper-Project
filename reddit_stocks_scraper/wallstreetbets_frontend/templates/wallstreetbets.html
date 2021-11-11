@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title> Reddit Stock Watcher | GET THE STATISTICS ON STOCK MENTIONS IN POPULAR SUBREDDIT</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'assests/css/bootstrap.css'%}">
 	<link rel="stylesheet" type="text/css" href="{% static 'assests/css/style.css'%}">
@@ -36,7 +36,7 @@
 	}
 	</style>
 </head>
-<body>
+<body id="thebody">
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
 		<a class="navbar-brand" href="#" style="font-family:'DotGothic16', sans-serif; color: powderblue;">
 			<i class="fab fa-reddit"></i>
@@ -73,13 +73,19 @@
 		</div>
 	</nav>
 	<!-- Demo App Powered by React -->
-	<div class="container-lg" id="react-graph-comp">
+	<div class="container-fluid" id="react-graph-comp">
 		<div id="react">
 		</div>
 	</div>
 	
 
 	<!-- Script Addition Section -->
+	<script>
+		if (window.innerWidth < 690 ) {
+			document.getElementById('thebody').innerHTML= "<h1> Not supporting mobile and tablet, download app to get full user experience </h1>"
+			console.log('hello world')
+		}
+	</script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
 	<script type="text/javascript" src="{% static 'assests/js/bootstrap.js' %}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>

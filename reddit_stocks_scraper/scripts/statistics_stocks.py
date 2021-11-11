@@ -16,6 +16,8 @@ df.rename(columns={0:"primary_id", 1:"stock_mentions", 2:"stock_ticker"}, inplac
 # df is the dataframe containing data from sql
 y_axis = df["stock_ticker"]
 x_axis = df["stock_mentions"]
+print(list(y_axis))
+print(list(x_axis))
 
 y_width = []
 

@@ -18,7 +18,7 @@ from .serializers import RedditWallStreetBetsTopDBSerializer
 # view responsible for showing all json of stocks scraped
 class RedditStocksDBListView(generics.ListAPIView):
 	queryset = RedditWallStreetBetsStocksDB.objects.all()
-	serializer_class = RedditWallStreetBetsHotDBSerializer
+	serializer_class = RedditWallStreetBetsStocksDBSerializer
 
 
 # View that is responsible for showing Hot json endpoint

@@ -1,8 +1,18 @@
+# Ignore swap files created by editors
 *.swp
+
+# Ignore specific file types
 *.txt.sqp
 *.stocks_mentioned.txt
-node_modules/
-db.sqlite3
-virt/ # ignores virtual enviroment
 
- 
+# Ignore Node.js modules
+node_modules/
+
+# Ignore SQLite database files
+*.sqlite3
+
+# Ignore virtual environment directories
+virt/
+
+# Ignore Python cache files
+__pycache__/
